@@ -3,12 +3,15 @@
 @import "../../css/z-index.css";
 
 .workbook-report {
-    display: flex;
-    flex-direction: row;
-
     background-color: $ui-white;
+    padding: $space;
 }
 
-.report-item {
-    flex: 1;
+.title {
+    font-weight: bold;
+    margin-bottom: $space;
+}
+
+.items {
+    margin-left: $space;
 }

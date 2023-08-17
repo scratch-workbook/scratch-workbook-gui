@@ -312,12 +312,8 @@ const GUIComponent = props => {
                                 stageSize={stageSize}
                                 vm={vm}
                             />
-                            {/* TODO: add score */}
+                            {/* TODO: Use stageSize */}
                             <Box className={styles.targetWrapper}>
-                                {/* <TargetPane
-                                    stageSize={stageSize}
-                                    vm={vm}
-                                /> */}
                                 <WorkbookResult />
                             </Box>
                         </Box>

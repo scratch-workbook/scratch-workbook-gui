@@ -13,11 +13,15 @@ const WorkbookReport = function (props) {
 
     return (
         <div className={classNames(styles.workbookReport, className)}>
-            <div className={classNames(styles.reportItem)}>
-                できた！
+            <div className={classNames(styles.title)}>
+                {props.title}
             </div>
-            <div className={classNames(styles.reportItem)}>
-                にがて？
+            <div className={classNames(styles.items)}>
+                {props.items.map((item, index) => (
+                    <div key={index} className={classNames(styles.item)}>
+                        ・{item}
+                    </div>
+                ))}
             </div>
         </div>
     );
@@ -25,6 +29,8 @@ const WorkbookReport = function (props) {
 
 WorkbookReport.propTypes = {
     className: PropTypes.string,
+    title: PropTypes.string,
+    items: PropTypes.arrayOf(PropTypes.string),
 }
 
 export default injectIntl(WorkbookReport);

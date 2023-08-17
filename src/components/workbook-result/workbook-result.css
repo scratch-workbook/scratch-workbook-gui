@@ -20,6 +20,12 @@
     flex: 2;
 }
 
-.report {
+.report-container {
     flex: 3;
+    display: flex;
+    flex-direction: row;
+}
+
+.report {
+    flex: 1;
 }

@@ -16,7 +16,18 @@ const WorkbookResult = function(props) {
     return (
         <div className={classNames(styles.workbookResult, className)}>
             <WorkbookScore className={classNames(styles.score)} />
-            <WorkbookReport className={classNames(styles.report)} />
+            <div className={classNames(styles.reportContainer)}>
+                <WorkbookReport
+                    className={classNames(styles.report)}
+                    title="できた！"
+                    items={["ものをせってい", "ものをうごかす"]}
+                />
+                <WorkbookReport
+                    className={classNames(styles.report)}
+                    title="にがて？"
+                    items={["ほうこうのせってい", "きょりのせってい"]}
+                />
+            </div>
         </div>
     );
 };
