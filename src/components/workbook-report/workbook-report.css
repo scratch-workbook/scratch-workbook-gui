@@ -1,0 +1,14 @@
+@import "../../css/units.css";
+@import "../../css/colors.css";
+@import "../../css/z-index.css";
+
+.workbook-report {
+    display: flex;
+    flex-direction: row;
+
+    background-color: $ui-white;
+}
+
+.report-item {
+    flex: 1;
+}
