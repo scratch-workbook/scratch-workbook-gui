@@ -82,7 +82,7 @@ const GUIComponent = props => {
         canCreateCopy,
         canShare,
         canUseCloud,
-        canUseExtensions,
+        canManageExtensions,
         children,
         connectionModalVisible,
         costumeLibraryVisible,
@@ -279,7 +279,7 @@ const GUIComponent = props => {
                                         vm={vm}
                                     />
                                 </Box>
-                                { canUseExtensions ? (
+                                { canManageExtensions ? (
                                     <Box className={styles.extensionButtonContainer}>
                                         <button
                                             className={styles.extensionButton}
@@ -348,7 +348,7 @@ GUIComponent.propTypes = {
     canSave: PropTypes.bool,
     canShare: PropTypes.bool,
     canUseCloud: PropTypes.bool,
-    canUseExtensions: PropTypes.bool,
+    canManageExtensions: PropTypes.bool,
     cardsVisible: PropTypes.bool,
     children: PropTypes.node,
     costumeLibraryVisible: PropTypes.bool,
@@ -409,7 +409,7 @@ GUIComponent.defaultProps = {
     canCreateCopy: false,
     canShare: false,
     canUseCloud: false,
-    canUseExtensions: false,
+    canManageExtensions: false,
     enableCommunity: false,
     isCreating: false,
     isShared: false,
