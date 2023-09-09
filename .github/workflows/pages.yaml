@@ -33,13 +33,13 @@ jobs:
         run: |
           cd scratch-workbook-vm
           yarn install
-          yarn link
+          # yarn link
           cd ..
 
       - name: Setup gui
         run: |
           cd scratch-workbook-gui
-          yarn link scratch-vm
+          # yarn link scratch-vm
           yarn install
           yarn build
           cd ..
