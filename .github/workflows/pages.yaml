@@ -46,9 +46,10 @@ jobs:
           cd ..
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           path: ./scratch-workbook-gui/build
+          if-no-files-found: error
 
   deploy:
     # Add a dependency to the build job
