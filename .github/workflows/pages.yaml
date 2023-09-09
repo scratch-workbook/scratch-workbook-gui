@@ -40,6 +40,7 @@ jobs:
         run: |
           cd scratch-workbook-gui
           npm link scratch-vm
+          export NODE_OPTIONS=--openssl-legacy-provider
           npm install
           npm run build
           cd ..
