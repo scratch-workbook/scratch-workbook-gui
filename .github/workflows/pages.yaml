@@ -48,7 +48,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          path: ./scratch-workbook-gui/build
+          path: ./scratch-workbook-gui/build/
           if-no-files-found: error
 
   deploy:
