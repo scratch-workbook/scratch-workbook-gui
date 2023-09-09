@@ -32,16 +32,16 @@ jobs:
       - name: Setup vm
         run: |
           cd scratch-workbook-vm
-          yarn install
-          # yarn link
+          npm install
+          npm link
           cd ..
 
       - name: Setup gui
         run: |
           cd scratch-workbook-gui
-          # yarn link scratch-vm
-          yarn install
-          yarn build
+          npm link scratch-vm
+          npm install
+          npm run build
           cd ..
 
       - name: Upload artifacts
