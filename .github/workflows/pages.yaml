@@ -48,11 +48,14 @@ jobs:
           npm run build
           cd ..
 
+      - name: Remove symbolic link
+        run: cp -Lr scratch-workbook-gui/build build
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: github-pages
-          path: ./scratch-workbook-gui/build/
+          path: ./build
           if-no-files-found: error
 
   deploy:
