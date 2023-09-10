@@ -8,9 +8,6 @@ on:
 
 jobs:
   build:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout scratch-workbook-gui repository
@@ -49,7 +46,10 @@ jobs:
           cd ..
 
       - name: Remove symbolic link
-        run: cp -Lr scratch-workbook-gui/build build
+        run: cp -Lr ./scratch-workbook-gui/build ./build
+
+      # TODO: DEBUG
+      - run: ls -la ./build
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
