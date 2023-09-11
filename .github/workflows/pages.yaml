@@ -34,14 +34,12 @@ jobs:
           cd scratch-workbook-vm
           npm install
           npm pack
-          mv *.tgz ../
           cd ..
 
       - name: Setup gui
         run: |
           cd scratch-workbook-gui
-          tarball=$(ls ../scratch-workbook-vm-*.tgz)
-          npm install $tarball
+          npm install ../scratch-workbook-vm/scratch-vm-*.tgz
           export NODE_OPTIONS=--openssl-legacy-provider
           npm install
           npm run build
