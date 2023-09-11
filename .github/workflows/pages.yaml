@@ -45,16 +45,17 @@ jobs:
           npm run build
           cd ..
 
-      - name: Remove symbolic link
+      - name: Remove symlink
         run: cp -Lr ./scratch-workbook-gui/build ./build
 
       # TODO: DEBUG
       - run: ls -la ./build
+      - run: find ./build -type f -links +1
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: github-pages
+          # name: github-pages
           path: ./build
           if-no-files-found: error
 
