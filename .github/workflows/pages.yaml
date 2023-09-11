@@ -45,11 +45,14 @@ jobs:
           npm run build
           cd ..
 
+      - name: Remove symlink
+        run: cp -Lr scratch-workbook-gui/build build
+
       - name: Upload artifacts
         uses: actions/upload-pages-artifact@v2
         with:
           name: github-pages
-          path: ./scratch-workbook-gui/build
+          path: ./build
           if-no-files-found: error
 
   deploy:
