@@ -16,13 +16,22 @@ jobs:
           repository: scratch-workbook/scratch-workbook-gui
           ref: prototype
           path: scratch-workbook-gui
-
+      
       - name: Checkout scratch-workbook-vm repository
         uses: actions/checkout@v4
         with:
           repository: scratch-workbook/scratch-workbook-vm
           ref: prototype
           path: scratch-workbook-vm
+
+      - name: Check branches
+        run: |
+          cd scratch-workbook-vm
+          git branch
+          cd ..
+          cd scratch-workbook-gui
+          git branch
+          cd ..
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v3
