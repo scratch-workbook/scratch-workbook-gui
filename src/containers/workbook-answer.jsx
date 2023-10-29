@@ -7,6 +7,8 @@ import { connect } from 'react-redux'
 import { surrender, answer, next } from "../reducers/workbook.js"
 import { updateToolbox } from "../reducers/toolbox.js"
 import WorkbookAnswerComponent from "../components/workbook-answer/workbook-answer.jsx"
+import randomizeSpritePosition from '../lib/randomize-sprite-position';
+import spriteLibraryContent from '../lib/libraries/sprites.json';
 
 class WorkbookAnswer extends React.Component {
     constructor(props) {
@@ -38,7 +40,36 @@ class WorkbookAnswer extends React.Component {
     }
     onNextClick (e) {
         e.preventDefault();
+
+        this.removeAllSprites();
+        this.addQuestionSprites();
+
         this.props.onNext();
+    }
+    removeAllSprites () {
+        for (const id of Object.keys(this.props.sprites)) {
+            this.props.vm.deleteSprite(id);
+        }
+    }
+    addQuestionSprites () {
+        if (this.props.nextQuestionSprites.length <= 0) return;
+
+        // Select a sprite who will be added first.
+        const targetName = this.props.nextQuestionSprites[0].name;
+
+        for (const spriteInfo of this.props.nextQuestionSprites) {
+            const name = spriteInfo.name;
+            const item = spriteLibraryContent.find(sprite => sprite.name === name);
+            randomizeSpritePosition(item);
+            item.x = spriteInfo.x ?? item.x;
+            item.y = spriteInfo.y ?? item.y;
+            this.props.vm.addSprite(JSON.stringify(item)).then(() => {
+                const target = Object.values(this.props.sprites).find(sprite => sprite.name === targetName);
+                if (target) {
+                    this.props.vm.setEditingTarget(target.id);
+                }
+            });
+        }
     }
     render() {
         const {
@@ -72,6 +103,8 @@ WorkbookAnswer.propTypes = {
     onAnswer: PropTypes.func.isRequired,
     onNext: PropTypes.func.isRequired,
     toolboxBlocksVisibilities: PropTypes.object.isRequired,
+    sprites: PropTypes.object,
+    nextQuestionSprites: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
 const mapStateToProps = state => ({
@@ -79,6 +112,8 @@ const mapStateToProps = state => ({
     isAnswering: state.scratchGui.workbook.answering,
     description: state.scratchGui.workbook.question.explanation,
     toolboxBlocksVisibilities: state.scratchGui.workbook.question.toolboxBlocks ?? {},
+    nextQuestionSprites: state.scratchGui.workbook.nextQuestion?.sprites ?? [],
+    sprites: state.scratchGui.targets.sprites,
 });
 
 const mapDispatchToProps = (dispatch) => ({
