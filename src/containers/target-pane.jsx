@@ -78,10 +78,6 @@ class TargetPane extends React.Component {
         this.props.vm.postSpriteInfo({y});
     }
     handleDeleteSprite (id) {
-        // TODO: debug
-        console.log('>>> handleDeleteSprite', id);
-        console.log('xxx editingTarget', this.props.editingTarget);
-
         const restoreSprite = this.props.vm.deleteSprite(id);
         const restoreFun = () => restoreSprite().then(this.handleActivateBlocksTab);
 
@@ -135,9 +131,6 @@ class TargetPane extends React.Component {
         this.props.onActivateTab(BLOCKS_TAB_INDEX);
     }
     handleNewSprite (spriteJSONString) {
-        // TODO: debug
-        console.log('*** handleNewSprite', spriteJSONString);
-
         return this.props.vm.addSprite(spriteJSONString)
             .then(this.handleActivateBlocksTab);
     }
